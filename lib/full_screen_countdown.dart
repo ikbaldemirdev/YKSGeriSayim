@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:yks_geri_sayim/countdown_home_page.dart';
 
 class FullScreenCountDown extends StatefulWidget {
   final int days;
@@ -19,10 +21,7 @@ class FullScreenCountDown extends StatefulWidget {
     required this.targetDate,
   }) : super(key: key);
 
-  
-
   @override
-  
   FullScreenCountDownState createState() => FullScreenCountDownState();
 }
 
@@ -41,6 +40,17 @@ class FullScreenCountDownState extends State<FullScreenCountDown> {
     _minutes = widget.minutes;
     _seconds = widget.seconds;
     _startCountdown();
+    
+    
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    
+    
+    
+    super.dispose();
   }
 
   void _startCountdown() {
@@ -57,10 +67,13 @@ class FullScreenCountDownState extends State<FullScreenCountDown> {
     });
   }
 
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
+  void _navigateToFullScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CountDownHomePage(),
+      ),
+    );
   }
 
   @override
@@ -108,7 +121,7 @@ class FullScreenCountDownState extends State<FullScreenCountDown> {
             child: IconButton(
               icon: const Icon(Icons.fullscreen_exit, color: Colors.white),
               onPressed: () {
-                Navigator.pop(context);
+                _navigateToFullScreen(context);
               },
             ),
           ),

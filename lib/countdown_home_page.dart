@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'full_screen_countdown.dart';
 import 'motivational_quotes.dart';
@@ -27,7 +28,6 @@ class CountDownHomePageState extends State<CountDownHomePage> {
 
   var adUnit = "ca-app-pub-3940256099942544/9214589741";
 
-
   @override
   void initState() {
     super.initState();
@@ -37,6 +37,10 @@ class CountDownHomePageState extends State<CountDownHomePage> {
     Timer.periodic(const Duration(days: 1), (timer) {
       _updateMotivationQuote();
     });
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
   }
 
   initBannerAd() {
@@ -87,6 +91,7 @@ class CountDownHomePageState extends State<CountDownHomePage> {
     _timer?.cancel();
     bannerAd?.dispose(); // bannerAd'i dispose et
     super.dispose();
+    
   }
 
   void _navigateToFullScreen(BuildContext context) {
