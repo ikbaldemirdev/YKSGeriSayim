@@ -93,22 +93,21 @@ class CountDownHomePageState extends State<CountDownHomePage> {
     super.dispose();
     
   }
-
-  void _navigateToFullScreen(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => FullScreenCountDown(
-          days: _days,
-          hours: _hours,
-          minutes: _minutes,
-          seconds: _seconds,
-          countdownType: _currentCountdown,
-          targetDate: _targetDate,
-        ),
+void _navigateToFullScreen(BuildContext context) {
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) => FullScreenCountDown(
+        days: _days,
+        hours: _hours,
+        minutes: _minutes,
+        seconds: _seconds,
+        countdownType: _currentCountdown,
+        targetDate: _targetDate,
       ),
-    );
-  }
+    ),
+  );
+}
 
   void _setTargetDate(DateTime date, String countdownType) {
     setState(() {
