@@ -67,14 +67,14 @@ class FullScreenCountDownState extends State<FullScreenCountDown> {
     });
   }
 
-  void _navigateToFullScreen(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const CountDownHomePage(),
-      ),
-    );
-  }
+  void _navigateToHomePage(BuildContext context) {
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const CountDownHomePage(),
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +121,7 @@ class FullScreenCountDownState extends State<FullScreenCountDown> {
             child: IconButton(
               icon: const Icon(Icons.fullscreen_exit, color: Colors.white),
               onPressed: () {
-                _navigateToFullScreen(context);
+                _navigateToHomePage(context);
               },
             ),
           ),
